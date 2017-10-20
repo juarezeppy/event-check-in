@@ -1,0 +1,69 @@
+<!-- begin login -->
+<div class="login login-v2">
+  <!-- begin brand -->
+  <div class="login-header">
+    <div class="brand">
+      <span class="logo"></span> Simple Check In
+      <small>Manage Your People</small>
+    </div>
+    <div class="icon">
+      <i class="fa fa-sign-in"></i>
+    </div>
+  </div>
+  <!-- end brand -->
+
+  <div class="login-content">
+    <form [formGroup]="form" (ngSubmit)="loginEP()">
+      <div class="form-group m-b-20 form-group-lg">
+        <input
+          type="text"
+          formControlName="formUsername"
+          id="formUsername"
+          placeholder="Email Address"
+          class="form-control input-lg"
+        >
+        <div
+          *ngIf="formUsername.touched && formUsername.invalid"
+          class="alert alert-danger">
+          <div *ngIf="formUsername.hasError('required')">An email address is required</div>
+        </div>
+      </div>
+
+      <div class="form-group m-b-20 form-group-lg">
+        <input
+          formControlName="formPassWord"
+          id="formPassWord"
+          type="password"
+          class="form-control input-lg"
+          placeholder="Password"
+        >
+        <div
+          *ngIf="formPassWord.touched && formPassWord.invalid"
+          class="alert alert-danger">
+          <div *ngIf="formPassWord.hasError('required')">A password is required</div>
+        </div>
+      </div>
+
+      <div class="login-buttons">
+        <button type="submit" class="btn btn-primary btn-block btn-lg">Sign me in</button>
+      </div>
+    </form>
+
+    <button class="btn btn-block btn-lg btn-social btn-facebook m-t-10" (click)="fbLogin()">
+      <span class="fa fa-facebook"></span> Sign In With Facebook
+    </button>
+
+    <div class="text-center m-t-20">
+      Not a member yet? Click <a (click)="setType()">here</a> to register.
+    </div>
+
+    <!-- use when ready
+    <hr />
+    <p class="text-center">
+      &copy; Simple Check In all rights reserved.
+    </p>
+    !-->
+  </div>
+
+</div>
+<!-- end login -->

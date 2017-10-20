@@ -1,0 +1,6 @@
+.login-background{
+  background: url("./../../assets/images/login-bg/bg-2.jpg");
+  background-size: cover;
+  height: 100%;
+  color: white;
+}

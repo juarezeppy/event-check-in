@@ -1,0 +1,27 @@
+<nav class="navbar navbar-toggleable-md navbar-light bg-faded">
+  <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo02" aria-controls="navbarTogglerDemo02" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+  <a class="navbar-brand" routerLink="/home">Check Me In App</a>
+
+  <div class="collapse navbar-collapse" id="navbarTogglerDemo02">
+    <ul class="navbar-nav mr-auto mt-2 mt-md-0">
+      <li class="nav-item dropdown" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">
+        <a *ngIf="loggedIn" class="nav-link dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">My Tracker</a>
+        <div class="dropdown-menu">
+          <a class="dropdown-item"  routerLink="/dashboard">Dashboard<span class="sr-only">(current)</span></a>
+          <a class="dropdown-item" href="#">View My Tracks</a>
+        </div>
+      </li>
+      <li class="nav-item dropdown" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">
+        <a *ngIf="loggedIn" class="nav-link" routerLink="/dashboard">Request</a>
+      </li>
+    </ul>
+    <form class="form-inline my-2 my-lg-0">
+      <button *ngIf="!loggedIn" class="btn btn-outline-success my-2 my-sm-0" (click)="routeClick('returningUser')">Login</button>
+      <button *ngIf="!loggedIn" class="btn btn-outline-success my-2 my-sm-0 m-l-5" (click)="routeClick('newUser')">Sign Up</button>
+      <button *ngIf="loggedIn"  class="btn btn-outline-success my-2 my-sm-0" (click)="routeClick('logout')">Logout</button>
+    </form>
+  </div>
+</nav>
+

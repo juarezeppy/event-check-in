@@ -1,0 +1,9 @@
+<div class="container">
+  <div *ngIf="formType === 'newUser'">
+    <app-sign-up></app-sign-up>
+  </div>
+
+  <div *ngIf="formType === 'returningUser'">
+    <app-returning-user></app-returning-user>
+  </div>
+</div>

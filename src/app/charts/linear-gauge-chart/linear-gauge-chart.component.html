@@ -1,0 +1,12 @@
+<div class="graph-box">
+    <ngx-charts-linear-gauge
+    [scheme]="colorScheme"
+    [value]="checkins"
+    [animations]="true"
+    [min]="min"
+    [max]="max"
+    [units]="'Check-Ins Completed'"
+    (select)="onSelect($event)">
+  </ngx-charts-linear-gauge>
+</div>
+

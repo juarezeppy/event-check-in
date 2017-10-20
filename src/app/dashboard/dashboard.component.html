@@ -1,0 +1,60 @@
+  <div class="container-fluid dashboard-bg">
+    <app-linear-gauge-chart></app-linear-gauge-chart>
+
+        <div class="row">
+
+          <div class="col-6">
+            <h3>Location: {{eventTitle}}</h3>
+          </div>
+
+          <div class="form-group col-4">
+            <select class="form-control form-control-sm"
+                    required
+                    [(ngModel)]="eventTitle"
+                    (change)="changeEvent()"
+                      >
+              <optgroup  label="Select An Event">
+              <option *ngFor="let event of eventChoices | async" [value]="event">{{event}}</option>
+              </optgroup>
+            </select>
+          </div>
+
+          <!--
+          <select required>
+            <option value="" disabled selected>Select something...
+            <option *ngFor="let event of eventChoices | async" [value]="event">{{event}}</option>
+          </select>
+          !-->
+
+          <div class="col-2 text-right">
+            <button type="button" class="btn btn-success m-5">Add</button>
+          </div>
+
+        </div>
+
+
+
+        <div class="table-responsive">
+
+          <table class="table table-striped">
+            <thead>
+            <tr>
+              <th>ID#</th>
+              <th>Name</th>
+              <th>Status</th>
+              <th>Delete</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr *ngFor="let attendee of attendees | async">
+              <td>{{attendee.id}}</td>
+              <td>{{attendee.name}}</td>
+              <td [ngClass]="{'not-signed-in': !attendee.checkIn,
+                              'signed-in': attendee.checkIn}">
+                {{attendee.checkIn}}</td>
+              <th>Delete</th>
+            </tr>
+            </tbody>
+          </table>
+        </div>
+  </div>
