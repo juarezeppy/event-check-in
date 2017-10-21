@@ -1,16 +1,18 @@
 import { Component, OnInit } from '@angular/core';
-import {EventsService} from '../services/events.service';
-import { Observable } from 'rxjs/Observable';
-import {AuthService} from '../services/auth.service';
-import {ChartDataService} from '../services/chart-data.service';
+import {Observable} from 'rxjs/Observable';
 import {AngularFireDatabase} from 'angularfire2/database';
+import {EventsService} from '../../services/events.service';
+import {AuthService} from '../../services/auth.service';
+import {ChartDataService} from '../../services/chart-data.service';
+
 
 @Component({
-  selector: 'app-dashboard',
-  templateUrl: './dashboard.component.html',
-  styleUrls: ['./dashboard.component.css']
+  selector: 'app-view-events',
+  templateUrl: './view-events.component.html',
+  styleUrls: ['./view-events.component.css']
 })
-export class DashboardComponent implements OnInit {
+
+export class ViewEventsComponent implements OnInit {
 
   eventTitle: string;
   attendees: Observable<any[]>;

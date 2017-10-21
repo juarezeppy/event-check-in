@@ -3,15 +3,12 @@ import { NgModule } from '@angular/core';
 
 // components
 import { AppComponent } from './app.component';
-import { DashboardComponent } from './dashboard/dashboard.component';
 import { LoginComponent } from './login/login.component';
 import { HomeComponent } from './home/home.component';
 import { NavbarComponent } from './navbar/navbar.component';
 import { SignUpComponent } from './login/sign-up/sign-up.component';
 import { ReturningUserComponent } from './login/returning-user/returning-user.component';
 import { LinearGaugeChartComponent } from './charts/linear-gauge-chart/linear-gauge-chart.component';
-import { AddUserComponent } from './dashboard/add-user/add-user.component';
-
 
 // Charts
 // import { NvD3Module } from 'ng2-nvd3';
@@ -38,18 +35,20 @@ import {EventsService} from './services/events.service';
 import {ChartDataService} from './services/chart-data.service';
 import {firebaseConfig} from '../firebaseConfig';
 import {AuthGuardService} from './services/auth-guard.service';
+import { AddEventComponent } from './dashboard/add-event/add-event.component';
+import { ViewEventsComponent } from './dashboard/view-events/view-events.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    DashboardComponent,
     LoginComponent,
     HomeComponent,
     NavbarComponent,
     SignUpComponent,
     ReturningUserComponent,
     LinearGaugeChartComponent,
-    AddUserComponent,
+    AddEventComponent,
+    ViewEventsComponent
   ],
   imports: [
     BrowserModule,
