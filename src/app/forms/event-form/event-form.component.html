@@ -1,0 +1,78 @@
+<div class="container">
+  <!-- begin login -->
+  <div class="login login-v2">
+
+    <div class="login-content">
+      <form [formGroup]="form" (ngSubmit)="createEvent()">
+
+        <!-- Event Name !-->
+        <div class="form-group m-b-20 form-group-lg">
+          <input
+            type="text"
+            formControlName="formEventName"
+            id="formEventName"
+            placeholder="Event Name: Ex. Club Meet"
+            class="form-control input-lg"
+          >
+          <div
+            *ngIf="formEventName.touched && formEventName.invalid"
+            class="alert alert-danger">
+            <div *ngIf="formEventName.hasError('required')">An even name is required.</div>
+          </div>
+        </div>
+
+        <!-- Location !-->
+        <div class="form-group m-b-20 form-group-lg">
+          <input
+            formControlName="formEventLocation"
+            id="formEventLocation"
+            class="form-control input-lg"
+            placeholder="Location"
+          >
+          <div
+            *ngIf="formEventLocation.touched && formEventLocation.invalid"
+            class="alert alert-danger">
+            <div *ngIf="formEventLocation.hasError('required')">A password is required</div>
+          </div>
+        </div>
+
+        <!-- List of Attendees !-->
+        <div class="form-group m-b-20 form-group-lg">
+          <input
+            formControlName="formAttendees"
+            id="formAttendees"
+            type="search"
+            class="form-control input-lg"
+            placeholder="Attendee UserID: Ex. Jake109"
+          >
+          <div
+            *ngIf="formAttendees.touched && formAttendees.invalid"
+            class="alert alert-danger">
+            <div *ngIf="formAttendees.hasError('required')">A password is required</div>
+          </div>
+        </div>
+
+        <!-- Date Time Picker !-->
+        <div class="form-group m-b-20 form-group-lg">
+          <input
+            formControlName="formDateTime"
+            id="formDateTime"
+            type="datetime-local"
+            class="form-control input-lg"
+          >
+          <div
+            *ngIf="formDateTime.touched && formDateTime.invalid"
+            class="alert alert-danger">
+            <div *ngIf="formDateTime.hasError('required')">A password is required</div>
+          </div>
+        </div>
+
+        <div class="login-buttons">
+          <button type="submit" class="btn btn-primary btn-block btn-lg">Create Event</button>
+        </div>
+      </form>
+
+    </div>
+
+  </div>
+</div>

@@ -9,20 +9,19 @@ import { NavbarComponent } from './navbar/navbar.component';
 import { SignUpComponent } from './login/sign-up/sign-up.component';
 import { ReturningUserComponent } from './login/returning-user/returning-user.component';
 import { LinearGaugeChartComponent } from './charts/linear-gauge-chart/linear-gauge-chart.component';
+import { EventFormComponent } from './forms/event-form/event-form.component';
 
 // Charts
-// import { NvD3Module } from 'ng2-nvd3';
-// d3 and nvd3 should be included somewhere
-import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {NgxChartsModule} from '@swimlane/ngx-charts';
+
+// Animaions
+import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 
 // Forms
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 
-
 // Routing module
 import {AppRoutingModule} from './app-routing-module';
-
 
 // Services
 import {HttpModule} from '@angular/http';
@@ -53,7 +52,8 @@ import {googleMapsKey} from '../firebaseConfig';
     LinearGaugeChartComponent,
     AddEventComponent,
     ViewEventsComponent,
-    SpinnerComponent
+    SpinnerComponent,
+    EventFormComponent
   ],
   imports: [
     BrowserModule,
