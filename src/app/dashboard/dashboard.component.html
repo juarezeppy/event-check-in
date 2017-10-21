@@ -1,22 +1,25 @@
   <div class="container-fluid dashboard-bg">
-    <app-linear-gauge-chart></app-linear-gauge-chart>
+    <app-linear-gauge-chart *ngIf="isEventSelected"></app-linear-gauge-chart>
 
         <div class="row">
 
           <div class="col-6">
-            <h3>Location: {{eventTitle}}</h3>
+            <h3>Event Title: {{eventTitle}}</h3>
           </div>
 
           <div class="form-group col-4">
-            <select class="form-control form-control-sm"
-                    required
-                    [(ngModel)]="eventTitle"
-                    (change)="changeEvent()"
-                      >
-              <optgroup  label="Select An Event">
-              <option *ngFor="let event of eventChoices | async" [value]="event">{{event}}</option>
-              </optgroup>
-            </select>
+            <form>
+              <select class="form-control form-control-sm"
+                      required
+                      name = "dropDown"
+                      ngModel
+                      #selectedValue = "ngModel"
+                      (change)="changeEvent(selectedValue)"
+                        >
+                <option value="" disabled selected>Select An Event To View</option>
+                <option *ngFor="let event of eventChoices | async" [value]="event">{{event}}</option>
+              </select>
+            </form>
           </div>
 
           <!--
