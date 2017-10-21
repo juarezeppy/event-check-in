@@ -33,10 +33,14 @@ import {AuthService} from './services/auth.service';
 import {LoginToggleService} from './services/login-toggle.service';
 import {EventsService} from './services/events.service';
 import {ChartDataService} from './services/chart-data.service';
-import {firebaseConfig} from '../firebaseConfig';
 import {AuthGuardService} from './services/auth-guard.service';
 import { AddEventComponent } from './dashboard/add-event/add-event.component';
 import { ViewEventsComponent } from './dashboard/view-events/view-events.component';
+import { SpinnerComponent } from './spinner/spinner.component';
+
+// Firebase config and APIs
+import {firebaseConfig} from '../firebaseConfig';
+import {googleMapsKey} from '../firebaseConfig';
 
 @NgModule({
   declarations: [
@@ -48,7 +52,8 @@ import { ViewEventsComponent } from './dashboard/view-events/view-events.compone
     ReturningUserComponent,
     LinearGaugeChartComponent,
     AddEventComponent,
-    ViewEventsComponent
+    ViewEventsComponent,
+    SpinnerComponent
   ],
   imports: [
     BrowserModule,

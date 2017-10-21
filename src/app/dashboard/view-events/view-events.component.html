@@ -1,5 +1,6 @@
 <div class="container-fluid dashboard-bg">
   <app-linear-gauge-chart *ngIf="isEventSelected"></app-linear-gauge-chart>
+  <app-spinner *ngIf="!isEventSelected"></app-spinner>
 
   <div class="row">
 
