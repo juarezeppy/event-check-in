@@ -2,6 +2,7 @@
 
 export class User {
   name: string;
+  username: string;
   ID: string;
   checkedIn: boolean;
   time: string;

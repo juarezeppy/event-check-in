@@ -10,6 +10,9 @@ import { SignUpComponent } from './login/sign-up/sign-up.component';
 import { ReturningUserComponent } from './login/returning-user/returning-user.component';
 import { LinearGaugeChartComponent } from './charts/linear-gauge-chart/linear-gauge-chart.component';
 import { EventFormComponent } from './forms/event-form/event-form.component';
+import { AddEventComponent } from './dashboard/add-event/add-event.component';
+import { ViewEventsComponent } from './dashboard/view-events/view-events.component';
+import { SpinnerComponent } from './spinner/spinner.component';
 
 // Charts
 import {NgxChartsModule} from '@swimlane/ngx-charts';
@@ -33,9 +36,7 @@ import {LoginToggleService} from './services/login-toggle.service';
 import {EventsService} from './services/events.service';
 import {ChartDataService} from './services/chart-data.service';
 import {AuthGuardService} from './services/auth-guard.service';
-import { AddEventComponent } from './dashboard/add-event/add-event.component';
-import { ViewEventsComponent } from './dashboard/view-events/view-events.component';
-import { SpinnerComponent } from './spinner/spinner.component';
+import {CheckUsernameService} from './services/check-username.service';
 
 // Firebase config and APIs
 import {firebaseConfig} from '../firebaseConfig';
@@ -67,7 +68,7 @@ import {googleMapsKey} from '../firebaseConfig';
     BrowserAnimationsModule,
     NgxChartsModule
   ],
-  providers: [AuthService, LoginToggleService, EventsService, ChartDataService, AuthGuardService],
+  providers: [AuthService, LoginToggleService, EventsService, ChartDataService, AuthGuardService, CheckUsernameService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

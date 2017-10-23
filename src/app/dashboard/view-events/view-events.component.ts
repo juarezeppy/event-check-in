@@ -16,6 +16,7 @@ export class ViewEventsComponent implements OnInit {
 
   eventTitle: string;
   attendees: Observable<any[]>;
+  eventSize: Observable<any[]>;
   eventChoices: Observable<any[]>;
   counter: number;
   isEventSelected: boolean;
