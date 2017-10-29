@@ -1,5 +1,5 @@
 
-<div *ngIf="!checkUserName.hasUsername">
+<div *ngIf="!checkUserName.hasUsername()" style="display:flex; justify-content: center;" class="m-t-25">
   <h3>Choose a Username</h3>
   <input type="text" class="input" placeholder="choose a username"
          [(ngModel)]="usernameText"
@@ -17,14 +17,16 @@
   </button>
 </div>
 
-<div class="row text-center">
-  <div class="col-2">
-  </div>
+<div *ngIf="checkUserName.hasUsername()">
+  <div class="row text-center">
+    <div class="col-2">
+    </div>
 
-  <div class="col-8">
-    <app-event-form></app-event-form>
-  </div>
+    <div class="col-8">
+      <app-event-form></app-event-form>
+    </div>
 
-  <div class="col-2">
+    <div class="col-2">
+    </div>
   </div>
 </div>

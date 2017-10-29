@@ -17,6 +17,7 @@ export class CheckUsernameService {
    * This function checks to see if the username is available from the db
    * */
   checkUsername(username: string) {
+    console.log('checking username');
     username = username.toLowerCase();
     return this.db.object(`usernames/${username}`);
   }
@@ -38,6 +39,12 @@ export class CheckUsernameService {
    * from the auth service
    * */
   hasUsername(): boolean {
-    return this.authService.getUsername() ? true : false;
+    if (this.authService.getUsername() === undefined) {
+  //    console.log('getUsername false');
+      return false;
+    } else {
+//      console.log('getUsername true');
+      return true;
+    }
   }
 }

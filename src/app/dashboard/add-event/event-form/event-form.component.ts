@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import {FormControl, FormGroup, Validators} from '@angular/forms';
+import {EventsService} from '../../../services/events.service';
 
 
 @Component({
@@ -24,13 +25,11 @@ export class EventFormComponent implements OnInit {
     ])
   });
 
-  constructor() {}
+  constructor(private eventService: EventsService) {}
 
   ngOnInit() {
   }
 
-  // use all lower case for native validators!!!!
-  // example minlength NOT minLength
   get formEventName() {
     return this.form.get('formEventName');
   }
@@ -49,6 +48,7 @@ export class EventFormComponent implements OnInit {
 
   createEvent() {
     console.log(this.formEventName.value, this.formEventLocation.value, this.formAttendees.value, this.formDateTime.value);
+    this.eventService.createNewEvent('TEST');
   }
 }
 

@@ -9,7 +9,7 @@ import { NavbarComponent } from './navbar/navbar.component';
 import { SignUpComponent } from './login/sign-up/sign-up.component';
 import { ReturningUserComponent } from './login/returning-user/returning-user.component';
 import { LinearGaugeChartComponent } from './charts/linear-gauge-chart/linear-gauge-chart.component';
-import { EventFormComponent } from './forms/event-form/event-form.component';
+import { EventFormComponent } from './dashboard/add-event/event-form/event-form.component';
 import { AddEventComponent } from './dashboard/add-event/add-event.component';
 import { ViewEventsComponent } from './dashboard/view-events/view-events.component';
 import { SpinnerComponent } from './spinner/spinner.component';

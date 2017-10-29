@@ -2,7 +2,7 @@
   <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo02" aria-controls="navbarTogglerDemo02" aria-expanded="false" aria-label="Toggle navigation">
     <span class="navbar-toggler-icon"></span>
   </button>
-  <a class="navbar-brand" routerLink="/home">Check Me In App</a>
+  <a class="navbar-brand" routerLink="/">Check Me In App</a>
 
   <div class="collapse navbar-collapse" id="navbarTogglerDemo02">
     <ul class="navbar-nav mr-auto mt-2 mt-md-0">
@@ -17,14 +17,20 @@
         </div>
       </li>
 
-      <li class="nav-item dropdown" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">
-        <a *ngIf="loggedIn" class="nav-link" routerLink="/dashboard">Request<span class="badge badge-pill badge-danger m-l-3">  5</span></a>
+      <li class="nav-item" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">
+        <a *ngIf="loggedIn" class="nav-link" routerLink="/myinvites">
+          Event Invites
+          <span class="badge badge-pill badge-danger m-l-3">  5</span>
+        </a>
       </li>
+
     </ul>
+
     <form class="form-inline my-2 my-lg-0">
       <button *ngIf="!loggedIn" class="btn btn-outline-success my-2 my-sm-0" (click)="routeClick('returningUser')">Login</button>
       <button *ngIf="!loggedIn" class="btn btn-outline-success my-2 my-sm-0 m-l-5" (click)="routeClick('newUser')">Sign Up</button>
       <button *ngIf="loggedIn"  class="btn btn-outline-success my-2 my-sm-0" (click)="routeClick('logout')">Logout</button>
     </form>
+
   </div>
 </nav>

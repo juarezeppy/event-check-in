@@ -21,6 +21,17 @@ export class EventsService {
    * that is the list of attendees for a particular event
    * */
   getEventData (event: string) {
+    console.log(this.authService.getUserID());
     return this.db.list('eventAttendees/' + this.authService.getUserID() + '/' + event).valueChanges();
+  }
+
+  /***
+   * This function creates a new event
+   * for the currently logged in user
+   */
+  createNewEvent(eventName: string) {
+    this.db.database.ref((`/events/${this.authService.getUserID()}`))
+      .child((`${eventName.toLowerCase()}`))
+      .set(eventName);
   }
 }

@@ -61,7 +61,7 @@ export class AuthService {
           accessToken: 'NULL',
           name:  (firstName + ' ' + lastName)
         });
-        this.router.navigate(['/']);
+        this.router.navigate(['/addEvent']);
       })
       .catch(
         error => console.log(error)
@@ -142,7 +142,7 @@ export class AuthService {
     return this.afAuth.authState;
   }
 
-  // this may be redundant. Run *ngIf auth to see if that works instead.
+  // Used to return true or false to render components
   getLoginStatus() {
     return this.loginStatus;
   }
@@ -151,12 +151,11 @@ export class AuthService {
    * This function returns a user object and populates
    * */
   getUserData () {
-    console.log('get user data called');
-    firebase.database().ref('users/' + this.currentUser.ID).once('value')
-      .then(snapshot => {
-        console.log(snapshot.val());
-        this.currentUser.name = snapshot.val().name;
-        this.currentUser.username = snapshot.val().username;
-      });
+    this.db.object('users/' + this.currentUser.ID).valueChanges().subscribe((snap: User) => {
+      console.log(snap);
+      this.currentUser.name = snap.name;
+      this.currentUser.username = snap.username;
+    });
   }
+
 }

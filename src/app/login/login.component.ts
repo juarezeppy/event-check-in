@@ -29,8 +29,6 @@ export class LoginComponent implements OnInit {
 
   ngOnInit() {
     // Subscriber to listen to isSignUp changes to toggle template components
-    console.log('in login onInit');
-
     this.toggleLogin.currentMessage.subscribe( formVal => {
       console.log(formVal);
       this.formType = formVal;
@@ -41,21 +39,11 @@ export class LoginComponent implements OnInit {
 
   // use all lower case for native validators!!!!
   // example minlength NOT minLength
-
   get formUsername() {
     return this.form.get('formUsername');
   }
 
   get formPassWord() {
     return this.form.get('formPassWord');
-  }
-
-  fbLogin() {
-    this.authService.loginFB();
-  }
-
-  loginEP() {
-    console.log(this.formUsername.value, this.formPassWord.value);
-    this.authService.login(this.formUsername.value, this.formPassWord.value);
   }
 }

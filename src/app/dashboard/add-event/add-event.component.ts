@@ -12,7 +12,7 @@ export class AddEventComponent implements OnInit {
   usernameText: string;
   usernameAvailable: boolean;
 
-  constructor(public checkUserName: CheckUsernameService, private authService: AuthService) {
+  constructor(public checkUserName: CheckUsernameService) {
   }
 
   ngOnInit() {

@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import {FormControl, FormGroup, Validators} from '@angular/forms';
 import {AuthService} from '../../services/auth.service';
 import {LoginToggleService} from '../../services/login-toggle.service';
+import {ifTrue} from 'codelyzer/util/function';
 
 @Component({
   selector: 'app-sign-up',
@@ -58,10 +59,7 @@ export class SignUpComponent implements OnInit {
   }
 
   equalPasswords() {
-    if (this.formVerifyPassWord.value === this.formPassWord.value) {
-      return true;
-    }
-    return false;
+    return this.formVerifyPassWord.value === this.formPassWord.value ? true : false;
   }
 
   setType() {

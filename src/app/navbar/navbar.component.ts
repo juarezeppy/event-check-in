@@ -21,8 +21,11 @@ export class NavbarComponent implements OnInit {
     });
   }
 
+  /***
+   *This function pushes a next value on to the BehaviorSubject observable
+   * Or ends authentication if logout is clicked
+   */
   routeClick(type: string) {
-
     if (type === 'returningUser') {
       this.toggleLogin.changeLoginFormType('returningUser');
       this.router.navigate(['/login']);
