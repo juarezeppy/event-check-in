@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import {FormControl, FormGroup, Validators} from '@angular/forms';
 import {EventsService} from '../../../services/events.service';
+import {AuthService} from '../../../services/auth.service';
+import {Router} from '@angular/router';
 
 
 @Component({
@@ -25,7 +27,7 @@ export class EventFormComponent implements OnInit {
     ])
   });
 
-  constructor(private eventService: EventsService) {}
+  constructor(private eventService: EventsService, private auth: AuthService, private route: Router) {}
 
   ngOnInit() {
   }
