@@ -42,7 +42,7 @@
       </tr>
       </thead>
       <tbody>
-      <tr *ngFor="let attendee of attendees | async">
+      <tr *ngFor="let attendee of attendeeList | async">
         <td>{{attendee.id}}</td>
         <td>{{attendee.name}}</td>
         <td [ngClass]="{'not-signed-in': !attendee.checkIn,

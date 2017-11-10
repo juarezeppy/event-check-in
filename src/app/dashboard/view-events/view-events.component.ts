@@ -15,11 +15,10 @@ export class ViewEventsComponent implements OnInit {
 
 
   eventTitle: string;
-  attendees: Observable<any[]>;
+  attendeeList: Observable<any[]>;
   eventChoices: Observable<any[]>;
-  counter: Observable<any>;
+  attendeeCounter: Observable<any>;
   isEventSelected: boolean;
-  test;
 
   constructor(private eventService: EventsService, private authService: AuthService, private chartData: ChartDataService) {
     this.eventTitle = 'Select An Event';
@@ -43,13 +42,12 @@ export class ViewEventsComponent implements OnInit {
   changeEvent(selectedValue) {
     console.log('getting event:', selectedValue.value.toLowerCase());
     this.eventTitle = selectedValue.value;
-    this.attendees = this.eventService.getEventData(selectedValue.value.toLowerCase());
-    this.counter = this.eventService.getEventSize(selectedValue.value.toLowerCase());
+    this.attendeeList = this.eventService.getEventData(selectedValue.value.toLowerCase());
+    this.attendeeCounter = this.eventService.getEventSize(selectedValue.value.toLowerCase());
 
-    this.counter.subscribe(size => {
-      console.log(size[0]); // Look up proper way to handle this... SHOULD NOT use array index
-      this.test = size[0];
-      this.chartData.changeSize(size[0]);
+    this.attendeeCounter.subscribe(totalAttendees => {
+      console.log('Total Attendee Invite Size: ', totalAttendees);
+      this.chartData.changeSize(totalAttendees);
       this.chartData.changeCheckIns(selectedValue.value.toLowerCase());
       this.isEventSelected = true;
     });

@@ -29,11 +29,22 @@ export class EventsService {
   /**
    * This function returns an observable
    * that is the number of attendees for a given event
-   * This value is used to be passed onto the chartService for rendering
+   * This value is used to be passed onto the chartService for rendering (max)
    * */
   getEventSize (event: string) {
-    return this.db.list(`eventAttendees/${this.authService.getUsername()}/${event}/size`).valueChanges();
+    return this.db.object(`eventAttendees/${this.authService.getUsername()}/${event}/size/total`).valueChanges();
   }
+
+
+  /**
+   * This function returns an observable
+   * that is the number of check-in attendees for an event
+   * This value is used to be passed onto the chartService for rendering
+   * */
+  getCheckIns (event: string) {
+    return this.db.object(`eventCounters/${this.authService.getUsername()}/${event}`).valueChanges();
+  }
+
 
   /***
    * This function creates a new event
@@ -45,24 +56,23 @@ export class EventsService {
       .child((`${eventObject.eventName.toLowerCase()}`))
       .set(eventObject.eventName);
 
+    // create a db object for the user who to hold the  checked-in user count
+    this.db.database.ref((`/eventCounters/${this.authService.getUsername()}`))
+      .child((`${eventObject.eventName.toLowerCase()}`))
+      .set(0);
+
+
     // maybe use a cloud function to grab id and set it to to the db after the push?
     // Create a db object that list forms attendee for the user who created it
     // This will probably need to be looped for every use invited...
-    this.db.database.ref((`/eventAttendees/${this.authService.getUserID()}`))
-      .child((`${eventObject.eventName.toLowerCase()}`))
+    this.db.database.ref((`/eventAttendees/${this.authService.getUsername()}`))
+      .child((`${eventObject.eventName.toLowerCase()}/users`))
       .child((`${eventObject.attendees}`))
       .set({
         checkIn: false,
         id: 100000,
         name: `${eventObject.attendees}`
       });
-
-    // create a db object for the user who created event that will hold the actively
-    // checked-in user count
-    this.db.database.ref((`/eventCounters/${this.authService.getUserID()}`))
-      .child((`${eventObject.eventName.toLowerCase()}`))
-      .set(0);
-
 
     // create a db invite object that will be pushed to EVERY user
     // invited to the event from the form. This will probably need be to looped
