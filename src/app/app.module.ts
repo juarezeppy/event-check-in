@@ -13,6 +13,7 @@ import { EventFormComponent } from './dashboard/add-event/event-form/event-form.
 import { AddEventComponent } from './dashboard/add-event/add-event.component';
 import { ViewEventsComponent } from './dashboard/view-events/view-events.component';
 import { SpinnerComponent } from './spinner/spinner.component';
+import {EventInvitesComponent} from './dashboard/event-invites/event-invites/event-invites.component';
 
 // Charts
 import {NgxChartsModule} from '@swimlane/ngx-charts';
@@ -54,7 +55,8 @@ import {googleMapsKey} from '../firebaseConfig';
     AddEventComponent,
     ViewEventsComponent,
     SpinnerComponent,
-    EventFormComponent
+    EventFormComponent,
+    EventInvitesComponent
   ],
   imports: [
     BrowserModule,

@@ -5,6 +5,7 @@ import { RouterModule, Routes } from '@angular/router';
 import { LoginComponent } from './login/login.component';
 import { HomeComponent } from './home/home.component';
 import { AddEventComponent } from './dashboard/add-event/add-event.component';
+import {EventInvitesComponent} from './dashboard/event-invites/event-invites/event-invites.component';
 
 // Auth Guard
 import {AuthGuardService} from './services/auth-guard.service';
@@ -16,6 +17,7 @@ const routes: Routes = [
   { path: 'login', component: LoginComponent, data: { title: 'Login'} },
   { path: 'viewevents', component: ViewEventsComponent, canActivate: [AuthGuardService] , data: { title: 'ViewEvents'} },
   { path: 'addevent', component: AddEventComponent, canActivate: [AuthGuardService], data: {title: 'AddEvent'} },
+  { path: 'eventinvites', component: EventInvitesComponent, canActivate: [AuthGuardService], data: {title: 'EventInvites'} },
   { path: '**', redirectTo: '', pathMatch: 'full' }
 ];
 

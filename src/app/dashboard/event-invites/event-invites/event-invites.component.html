@@ -1,0 +1,34 @@
+<div class="container-fluid">
+
+  <div *ngIf="!hasEvents">
+      <p>NO EVENTS</p>
+  </div>
+
+  <div *ngIf="hasEvents" class="table-responsive">
+    <table class="table table-striped">
+      <thead>
+      <tr>
+        <th>Event Name</th>
+        <th>Host</th>
+        <th>Date</th>
+        <th>Time</th>
+        <th>Location</th>
+        <th>Accept</th>
+        <th>Decline</th>
+      </tr>
+      </thead>
+
+      <tbody>
+        <tr *ngFor="let event of eventInvites | async">
+          <td>{{event.eventName}}</td>
+          <td>{{event.host}}</td>
+          <th>{{event.date}}</th>
+          <th>{{event.time}}</th>
+          <th>{{event.location}}</th>
+          <th><button class="btn btn-success">Accept</button></th>
+          <th><button class="btn btn-danger">Decline</button></th>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>

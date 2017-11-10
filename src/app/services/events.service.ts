@@ -1,6 +1,8 @@
 import { Injectable } from '@angular/core';
 import {AngularFireDatabase} from 'angularfire2/database';
 import {AuthService} from './auth.service';
+import {EventInvite} from '../models/eventInvite';
+import {Observable} from 'rxjs/Observable';
 
 @Injectable()
 export class EventsService {
@@ -79,5 +81,9 @@ export class EventsService {
     this.db.database.ref((`/eventInvites/${eventObject.attendees}`))
       .child(`${this.authService.getUsername()}/${eventObject.eventName}`)
       .set(false);
+  }
+
+  getEventInvites(): Observable<EventInvite[]> {
+    return this.db.list(`eventInvites/${this.authService.getUsername()}/juarezeppy`).valueChanges();
   }
 }

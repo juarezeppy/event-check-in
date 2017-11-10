@@ -31,7 +31,6 @@
 
 
   <div class="table-responsive">
-
     <table class="table table-striped">
       <thead>
       <tr>
@@ -48,7 +47,7 @@
         <td [ngClass]="{'not-signed-in': !attendee.checkIn,
                               'signed-in': attendee.checkIn}">
           {{attendee.checkIn}}</td>
-        <th>Delete</th>
+        <td>Delete</td>
       </tr>
       </tbody>
     </table>
