@@ -1,8 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import {FormControl, FormGroup, Validators} from '@angular/forms';
 import {EventsService} from '../../../services/events.service';
-import {AuthService} from '../../../services/auth.service';
-import {Router} from '@angular/router';
 
 
 @Component({
@@ -27,7 +25,7 @@ export class EventFormComponent implements OnInit {
     ])
   });
 
-  constructor(private eventService: EventsService, private auth: AuthService, private route: Router) {}
+  constructor(private eventService: EventsService) {}
 
   ngOnInit() {
   }
@@ -50,7 +48,13 @@ export class EventFormComponent implements OnInit {
 
   createEvent() {
     console.log(this.formEventName.value, this.formEventLocation.value, this.formAttendees.value, this.formDateTime.value);
-    this.eventService.createNewEvent('TEST');
+    const eventObject = {
+        eventName:  this.formEventName.value,
+        location:   this.formEventLocation.value,
+        attendees:  this.formAttendees.value,
+        dateTime:   this.formDateTime.value
+    };
+    this.eventService.createNewEvent(eventObject);
   }
 }
 

@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import {single} from './data';
 import {ChartDataService} from '../../services/chart-data.service';
 import {AngularFireDatabase} from 'angularfire2/database';
 import {AuthService} from '../../services/auth.service';
@@ -23,7 +22,6 @@ export class LinearGaugeChartComponent implements OnInit {
   };
 
   constructor(private chartData: ChartDataService, private db: AngularFireDatabase, private auth: AuthService) {
-    this.data = single;
     this.min = 0;
     this.max = 100;
     this.checkins = 0;
@@ -33,6 +31,7 @@ export class LinearGaugeChartComponent implements OnInit {
     this.auth.getAuthState().subscribe(() => {
 
       this.chartData.currentMessage.subscribe(message => {
+        console.log(message);
         this.db.object('eventCounters/' + this.auth.getUserID() + '/' + message)
           .snapshotChanges().subscribe(item => {
           console.log(typeof item.payload.val());
@@ -43,7 +42,7 @@ export class LinearGaugeChartComponent implements OnInit {
     });
 
     this.chartData.currentEventSize.subscribe(size => {
-      console.log(size);
+      console.log(size, typeof size);
       this.max = size;
     });
   }

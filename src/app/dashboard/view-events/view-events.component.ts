@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import {Observable} from 'rxjs/Observable';
-import {AngularFireDatabase, AngularFireList} from 'angularfire2/database';
 import {EventsService} from '../../services/events.service';
 import {AuthService} from '../../services/auth.service';
 import {ChartDataService} from '../../services/chart-data.service';
@@ -18,52 +17,42 @@ export class ViewEventsComponent implements OnInit {
   eventTitle: string;
   attendees: Observable<any[]>;
   eventChoices: Observable<any[]>;
-  counter: number;
+  counter: Observable<any>;
   isEventSelected: boolean;
+  test;
 
-
-  itemsRef: AngularFireList<any>;
-
-  constructor(private db: AngularFireDatabase, private eventService: EventsService,
-              private authService: AuthService, private chartData: ChartDataService) {
+  constructor(private eventService: EventsService, private authService: AuthService, private chartData: ChartDataService) {
     this.eventTitle = 'Select An Event';
-    this.counter = 0;
     this.isEventSelected = false;
   }
 
   ngOnInit() {
+    // get the users list of events from the database
     this.authService.getAuthState().subscribe(() => {
-      this.eventChoices = this.eventService.getEvents();
-
-      this.itemsRef = this.db.list('events/SoK6mveajVSH6rKCYYa09XABsqD3/');
-      this.itemsRef.snapshotChanges(['child_added'])
-        .subscribe(actions => {
-          actions.forEach(action => {
-            console.log(action.type);
-            console.log(action.key);
-            console.log(action.payload.val(), action.payload.val().checkedIn);
-          });
-        });
+    this.eventChoices = this.eventService.getEvents();
     });
   }
 
+  /**
+   * change Event uses observables to
+   * get the event attendees
+   * get the event size (num of people invited)
+   * then finally we subscribe to the counter which will pass the size onto
+   * the chart service which is used to render the chart
+   * */
   changeEvent(selectedValue) {
-    console.log('getting event:', selectedValue.value);
+    console.log('getting event:', selectedValue.value.toLowerCase());
+    this.eventTitle = selectedValue.value;
+    this.attendees = this.eventService.getEventData(selectedValue.value.toLowerCase());
+    this.counter = this.eventService.getEventSize(selectedValue.value.toLowerCase());
 
-    if (this.eventTitle !== '') {
-      this.eventTitle = selectedValue.value;
-      this.attendees = this.eventService.getEventData(this.eventTitle.toLowerCase());
-      this.isEventSelected = true;                                  // <-- fix
-
-      // use a map to manipulate data to return the number of childen to the chart service
-      this.attendees
-        .map(action => {
-          return action.length;
-        })
-        .subscribe(newSize => {
-          this.chartData.changeSize(newSize);
-          this.chartData.changeCheckIns(this.eventTitle.toLowerCase());
-        });
-      }
-    }
+    this.counter.subscribe(size => {
+      console.log(size[0]); // Look up proper way to handle this... SHOULD NOT use array index
+      this.test = size[0];
+      this.chartData.changeSize(size[0]);
+      this.chartData.changeCheckIns(selectedValue.value.toLowerCase());
+      this.isEventSelected = true;
+    });
+  }
 }
+

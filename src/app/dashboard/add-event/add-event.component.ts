@@ -1,7 +1,5 @@
 import {Component, OnInit} from '@angular/core';
 import {CheckUsernameService} from '../../services/check-username.service';
-import {AuthService} from '../../services/auth.service';
-import {Router} from '@angular/router';
 
 @Component({
   selector: 'app-add-event',
@@ -13,11 +11,10 @@ export class AddEventComponent implements OnInit {
   usernameText: string;
   usernameAvailable: boolean;
 
-  constructor(public checkUserName: CheckUsernameService, private auth: AuthService, private route: Router) {
+  constructor(public checkUserName: CheckUsernameService) {
   }
 
   ngOnInit() {
-    console.log('ngOnInit called');
   }
 
   checkUsername() {
