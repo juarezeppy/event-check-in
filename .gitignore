@@ -44,3 +44,4 @@ Thumbs.db
 
 # Firebase config
 /src/firebaseConfig.ts
+/src/keys

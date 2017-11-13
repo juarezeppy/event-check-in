@@ -14,9 +14,14 @@ import { AddEventComponent } from './dashboard/add-event/add-event.component';
 import { ViewEventsComponent } from './dashboard/view-events/view-events.component';
 import { SpinnerComponent } from './spinner/spinner.component';
 import {EventInvitesComponent} from './dashboard/event-invites/event-invites/event-invites.component';
+import { GoogleMapComponent } from './map/google-map/google-map.component';
 
 // Charts
 import {NgxChartsModule} from '@swimlane/ngx-charts';
+
+// AGM Google Maps
+import { AgmCoreModule } from '@agm/core';
+
 
 // Animaions
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
@@ -41,7 +46,10 @@ import {CheckUsernameService} from './services/check-username.service';
 
 // Firebase config and APIs
 import {firebaseConfig} from '../firebaseConfig';
-import {googleMapsKey} from '../firebaseConfig';
+import {googleMapsAPIKey} from '../keys/mapsAPI';
+
+
+
 
 @NgModule({
   declarations: [
@@ -56,7 +64,8 @@ import {googleMapsKey} from '../firebaseConfig';
     ViewEventsComponent,
     SpinnerComponent,
     EventFormComponent,
-    EventInvitesComponent
+    EventInvitesComponent,
+    GoogleMapComponent
   ],
   imports: [
     BrowserModule,
@@ -68,7 +77,10 @@ import {googleMapsKey} from '../firebaseConfig';
     AngularFireAuthModule,
     HttpModule,
     BrowserAnimationsModule,
-    NgxChartsModule
+    NgxChartsModule,
+    AgmCoreModule.forRoot({
+      apiKey: googleMapsAPIKey
+    })
   ],
   providers: [AuthService, LoginToggleService, EventsService, ChartDataService, AuthGuardService, CheckUsernameService],
   bootstrap: [AppComponent]
