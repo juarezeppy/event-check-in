@@ -81,6 +81,17 @@ export class EventsService {
     this.db.database.ref((`/eventInvites/${eventObject.attendees}`))
       .child(`${this.authService.getUsername()}/${eventObject.eventName}`)
       .set(false);
+
+    this.db.database.ref((`/eventInvites/${eventObject.attendees}`))
+      .child(`/_newInvites`)
+      .transaction( val => {
+        if (val === 0) {
+          return 1;
+        }
+
+        val = val + 1;
+        return val;
+      });
   }
 
   getEventInvites(): Observable<EventInvite[]> {

@@ -43,6 +43,7 @@ import {EventsService} from './services/events.service';
 import {ChartDataService} from './services/chart-data.service';
 import {AuthGuardService} from './services/auth-guard.service';
 import {CheckUsernameService} from './services/check-username.service';
+import {InviteCountService} from './services/invite-count.service';
 
 // Firebase config and APIs
 import {firebaseConfig} from '../firebaseConfig';
@@ -82,7 +83,8 @@ import {googleMapsAPIKey} from '../keys/mapsAPI';
       apiKey: googleMapsAPIKey
     })
   ],
-  providers: [AuthService, LoginToggleService, EventsService, ChartDataService, AuthGuardService, CheckUsernameService],
+  providers: [AuthService, LoginToggleService, EventsService,
+    ChartDataService, AuthGuardService, CheckUsernameService, InviteCountService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

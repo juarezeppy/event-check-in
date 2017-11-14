@@ -10,6 +10,7 @@ import { Router } from '@angular/router';
 
 import * as firebase from 'firebase/app';
 import { User } from '../models/user';
+import {InviteCountService} from './invite-count.service';
 
 
 @Injectable()
@@ -19,7 +20,8 @@ export class AuthService {
   private loginStatus:    boolean;
   private fbProvider:     firebase.auth.FacebookAuthProvider;
 
-  constructor(private afAuth: AngularFireAuth, private db: AngularFireDatabase, private router: Router) {
+  constructor(private afAuth: AngularFireAuth, private db: AngularFireDatabase,
+              private router: Router, private inviteCount: InviteCountService) {
     // Facebook provider used for popup authentication
     this.fbProvider = new firebase.auth.FacebookAuthProvider();
 
@@ -157,6 +159,12 @@ export class AuthService {
       console.log(snap);
       this.currentUser.name = snap.name;
       this.currentUser.username = snap.username;
+
+      // CALL EVENT SERVICE AND PULL/SUBSCRIBE TO EVENT INVITES
+      this.db.object(`eventInvites/${snap.username}/_newInvites`)
+        .valueChanges().subscribe((num: number) => {
+          this.inviteCount.changeSize(num);
+      });
     });
   }
 
